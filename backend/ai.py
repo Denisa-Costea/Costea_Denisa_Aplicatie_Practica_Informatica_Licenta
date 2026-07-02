@@ -111,49 +111,28 @@ def generate_text_content(prompt: str, content_type: str, platform: str, tone: s
             f"{hashtags} #Cognify #AI"
         )
 
-def generate_image_content(prompt: str, style: str, size: str, model: str = "dall-e-3") -> str:
-    """Generează o imagine folosind OpenAI DALL-E, descărcând-o local. Include imagini Unsplash pe post de fallback."""
-    fallback_images = [
-        "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1024&q=80&auto=format&fit=crop",
-        "https://images.unsplash.com/photo-1518770660439-4636190af475?w=1024&q=80&auto=format&fit=crop",
-        "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=1024&q=80&auto=format&fit=crop",
-        "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=1024&q=80&auto=format&fit=crop"
-    ]
-    fallback_image = fallback_images[len(prompt) % len(fallback_images)]
-
-    if not client:
-        return fallback_image
-
+def generate_image_content(prompt: str, style: str, size: str, model: str = "pollinations") -> str:
+    """Generează o imagine gratuit folosind Pollinations AI, descărcând-o local."""
     try:
-        try:
-            response = client.images.generate(
-                model=model,
-                prompt=f"{prompt}. Style: {style}",
-                size="1024x1024",
-                quality="standard",
-                n=1,
-            )
-        except Exception as e:
-            if "does not exist" in str(e).lower() and model == "dall-e-3":
-                print("DALL-E 3 not found, falling back to dall-e-2")
-                response = client.images.generate(
-                    model="dall-e-2",
-                    prompt=f"{prompt}. Style: {style}",
-                    size="1024x1024",
-                    n=1,
-                )
-            else:
-                raise e
-
-        if response.data[0].url:
-            local_path = save_image_locally(response.data[0].url)
-            return local_path if local_path else response.data[0].url
-        elif response.data[0].b64_json:
-            return save_b64_image_locally(response.data[0].b64_json)
-        return fallback_image
+        import urllib.parse
+        # Adăugăm stilul la prompt pentru un rezultat mai bun
+        full_prompt = f"{prompt}, high quality, detailed, {style} style"
+        encoded_prompt = urllib.parse.quote(full_prompt)
+        
+        # Generăm imaginea gratuit prin Pollinations
+        image_url = f"https://image.pollinations.ai/prompt/{encoded_prompt}?width=1024&height=1024&nologo=true"
+        
+        # O descărcăm și o salvăm local în fișierul de uploads
+        local_path = save_image_locally(image_url)
+        return local_path if local_path else image_url
     except Exception as e:
-        print(f"OpenAI Image Error: {e}. Falling back to simulation.")
-        return fallback_image
+        print(f"Pollinations Image Error: {e}. Falling back to simulation.")
+        fallback_images = [
+            "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1024&q=80&auto=format&fit=crop",
+            "https://images.unsplash.com/photo-1518770660439-4636190af475?w=1024&q=80&auto=format&fit=crop",
+            "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=1024&q=80&auto=format&fit=crop"
+        ]
+        return fallback_images[len(prompt) % len(fallback_images)]
 
 def analyze_content_score(text: str) -> dict:
     """Evaluează textul folosind modul structurat JSON din GPT."""
