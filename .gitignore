@@ -1,0 +1,64 @@
+# ============================================
+# Python
+# ============================================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+.pytest_cache/
+.coverage
+htmlcov/
+*.egg-info/
+*.egg
+
+# ============================================
+# Baze de date (fișiere binare)
+# ============================================
+*.db
+*.db-journal
+*.sqlite3
+
+# ============================================
+# Node.js
+# ============================================
+node_modules/
+.next/
+out/
+build/
+dist/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ============================================
+# Fișiere generate / uploads (binare)
+# ============================================
+backend/uploads/generated/
+frontend/public/videos/
+
+# ============================================
+# Variabile de mediu (secrete)
+# ============================================
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+backend/.env
+frontend/.env
+
+# ============================================
+# OS & IDE
+# ============================================
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo

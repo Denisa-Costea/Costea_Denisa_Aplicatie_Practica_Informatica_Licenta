@@ -1,0 +1,299 @@
+@import '../../../styles/variables.scss';
+@import '../../../styles/mixins.scss';
+
+.pageWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem; // space-y-10 equivalent
+}
+
+.titleSection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  text-align: left;
+}
+
+.title {
+  font-size: 3rem; // text-5xl
+  font-weight: 900;
+  letter-spacing: -0.025em;
+  color: $text-white;
+  text-transform: uppercase;
+  font-style: italic;
+}
+
+.subtitle {
+  color: $text-slate-400;
+  font-weight: 500;
+}
+
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 5rem 2rem;
+  border-radius: $radius-3xl;
+  background-color: rgba(255, 255, 255, 0.02);
+  border: 2px dashed rgba(255, 255, 255, 0.05);
+  text-align: center;
+  opacity: 0.4;
+}
+
+.listWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem; // space-y-8
+}
+
+.analysisCard {
+  @include glass-card;
+  border-radius: $radius-3xl;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: $shadow-2xl;
+
+  @include respond-to('md') {
+    flex-direction: row;
+  }
+}
+
+.gradePanel {
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.02);
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+
+  @include respond-to('md') {
+    width: 20rem; // w-80
+    border-bottom: none;
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+  }
+}
+
+.gradeCircleWrapper {
+  position: relative;
+  width: 8rem;
+  height: 8rem;
+  margin-bottom: 1.5rem;
+}
+
+.pulseBg {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(37, 99, 235, 0.2);
+  border-radius: 50%;
+  filter: blur(24px);
+  animation: pulse-soft 2s infinite;
+}
+
+.gradeCircle {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 4px solid rgba(37, 99, 235, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gradeScore {
+  font-size: 3rem; // text-5xl
+  font-weight: 900;
+  letter-spacing: -0.025em;
+  color: $text-white;
+}
+
+.gradeLabel {
+  font-size: 10px;
+  font-weight: 900;
+  color: $primary-blue;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  margin-bottom: 1rem;
+}
+
+.optimizationTag {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  background-color: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  color: $emerald-400;
+  font-size: 10px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.metricsPanel {
+  flex: 1;
+  padding: 2.5rem;
+  display: grid;
+  gap: 3rem;
+  
+  @include respond-to('lg') {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.metricsGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem; // space-y-8
+}
+
+.progressItem {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.progressLabelRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.progressLabel {
+  font-size: 0.75rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: $text-white;
+}
+
+.progressValue {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: $text-slate-500;
+}
+
+.sentimentSection {
+  padding-top: 1rem;
+  text-align: left;
+}
+
+.sentimentLabel {
+  font-size: 10px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: $text-slate-500;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.sentimentBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: $radius-xl;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sentimentDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #3b82f6;
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+}
+
+.sentimentText {
+  font-size: 0.875rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: $text-white;
+}
+
+.insightsGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem; // space-y-6
+  text-align: left;
+}
+
+.critiqueCard {
+  padding: 1.5rem;
+  border-radius: $radius-2xl;
+  background-color: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.critiqueHeader {
+  font-size: 0.75rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: $blue-400;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.critiqueText {
+  font-size: 0.875rem;
+  color: $text-slate-400;
+  font-weight: 500;
+  line-height: 1.625;
+  font-style: italic;
+}
+
+.suggestionsCard {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.suggestionsHeader {
+  font-size: 0.75rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: $emerald-400;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.suggestionsList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.suggestionItem {
+  font-size: 0.75rem;
+  color: $text-slate-500;
+  font-weight: 700;
+  display: flex;
+  align-items: start;
+  gap: 0.75rem;
+}
+
+.suggestionIcon {
+  color: $emerald-400;
+  flex-shrink: 0;
+  margin-top: 2px;
+}

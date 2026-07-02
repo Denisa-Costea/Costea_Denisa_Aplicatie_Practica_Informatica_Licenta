@@ -1,0 +1,811 @@
+@import '../../../styles/variables.scss';
+@import '../../../styles/mixins.scss';
+
+.pageWrapper {
+  max-w: 72rem; // max-w-6xl
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem; // space-y-10 equivalent
+}
+
+// Page header
+.pageHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding-bottom: 2rem;
+}
+
+.headerText {
+  text-align: left;
+}
+
+.title {
+  font-size: 2.25rem; // text-4xl
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: $text-white;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  color: $text-slate-400;
+  font-size: 0.875rem;
+}
+
+// Credits widget
+.creditsWidget {
+  background-color: rgba(30, 41, 59, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 0.75rem 1.25rem;
+  border-radius: $radius-xl;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.creditsIcon {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: $radius-pill;
+  background-color: rgba(59, 130, 246, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $blue-400;
+  border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.creditsTextWrapper {
+  text-align: left;
+}
+
+.creditsCount {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: $text-white;
+  line-height: 1;
+}
+
+.creditsLabel {
+  font-size: 9px;
+  font-weight: 700;
+  color: $text-slate-500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 0.25rem;
+}
+
+// Layout Grid
+.layoutGrid {
+  display: grid;
+  gap: 2rem;
+  
+  @include respond-to('lg') {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+}
+
+// Generation Panel (Left)
+.formCol {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  
+  @include respond-to('lg') {
+    grid-column: span 5 / span 5;
+  }
+}
+
+.formCard {
+  background-color: rgba(15, 23, 42, 0.5);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: $radius-2xl;
+  padding: 2rem;
+  box-shadow: $shadow-2xl;
+  position: relative;
+  overflow: hidden;
+}
+
+// Tab Switcher
+.tabSwitcher {
+  display: flex;
+  padding: 0.25rem;
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: $radius-md;
+  margin-bottom: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.tabBtn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.625rem 0;
+  border-radius: $radius-sm;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: none;
+  background: transparent;
+  color: $text-slate-500;
+  cursor: pointer;
+  transition: $transition-fast;
+
+  &:hover {
+    color: $text-slate-300;
+  }
+}
+
+.tabBtnActive {
+  background-color: $primary-blue;
+  color: $text-white;
+  box-shadow: 0 0 15px rgba(37, 99, 235, 0.4);
+
+  &:hover {
+    color: $text-white;
+  }
+}
+
+// Dynamic selectors row
+.selectorsRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.selectorWrapper {
+  flex: 1;
+  min-width: 140px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.selectorLabel {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: $text-slate-500;
+  margin-left: 0.25rem;
+}
+
+// Prompt Textarea
+.promptWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.textarea {
+  width: 100%;
+  height: 10rem; // h-40
+  background-color: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: $radius-xl;
+  padding: 1.25rem;
+  font-size: 0.875rem;
+  color: $text-slate-200;
+  outline: none;
+  transition: $transition-fast;
+  resize: none;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.1);
+  }
+
+  &:focus {
+    border-color: rgba(37, 99, 235, 0.5);
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.2), 0 0 0 2px rgba(37, 99, 235, 0.25);
+  }
+}
+
+// Preset Buttons
+.presetsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.presetBtn {
+  padding: 0.375rem 0.75rem;
+  border-radius: $radius-sm;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: $text-slate-400;
+  cursor: pointer;
+  transition: $transition-fast;
+
+  &:hover {
+    background-color: rgba(37, 99, 235, 0.1);
+    color: $blue-400;
+    border-color: rgba(37, 99, 235, 0.3);
+  }
+}
+
+// Generate Action Button
+.generateBtn {
+  width: 100%;
+  height: 3.5rem;
+  border-radius: $radius-lg;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: $transition-fast;
+  color: $text-white;
+
+  &:disabled {
+    background: rgba(255, 255, 255, 0.05) !important;
+    color: $text-slate-600 !important;
+    cursor: not-allowed;
+    box-shadow: none !important;
+  }
+}
+
+// Variations of generate button based on active tab
+.btn-text {
+  background: linear-gradient(to right, $primary-blue, $indigo-500);
+  box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.25);
+  &:hover {
+    box-shadow: 0 10px 20px -3px rgba(37, 99, 235, 0.4);
+    transform: translateY(-1px);
+  }
+}
+
+.btn-image {
+  background: linear-gradient(to right, #db2777, #f43f5e);
+  box-shadow: 0 10px 15px -3px rgba(219, 39, 119, 0.25);
+  &:hover {
+    box-shadow: 0 10px 20px -3px rgba(219, 39, 119, 0.4);
+    transform: translateY(-1px);
+  }
+}
+
+.btn-video {
+  background: linear-gradient(to right, #059669, #14b8a6);
+  box-shadow: 0 10px 15px -3px rgba(5, 150, 105, 0.25);
+  &:hover {
+    box-shadow: 0 10px 20px -3px rgba(5, 150, 105, 0.4);
+    transform: translateY(-1px);
+  }
+}
+
+.btn-magic {
+  background: linear-gradient(to right, $indigo-500, $primary-blue, $purple-500);
+  box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.25);
+  &:hover {
+    box-shadow: 0 10px 20px -3px rgba(168, 85, 247, 0.4);
+    transform: translateY(-1px);
+  }
+}
+
+.creditCostBadge {
+  font-size: 10px;
+  padding: 0.125rem 0.5rem;
+  border-radius: $radius-pill;
+  background-color: rgba(0, 0, 0, 0.2);
+  margin-left: 0.25rem;
+}
+
+.hoverLayer {
+  @include absolute-fill;
+  background-color: rgba(255, 255, 255, 0.1);
+  opacity: 0;
+  transition: opacity 0.2s;
+  pointer-events: none;
+  
+  .generateBtn:hover & {
+    opacity: 1;
+  }
+}
+
+.securityBadge {
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  opacity: 0.6;
+  filter: grayscale(100%);
+  transition: $transition-fast;
+
+  &:hover {
+    opacity: 1;
+    filter: grayscale(0);
+  }
+}
+
+.securityText {
+  font-size: 10px;
+  font-weight: 500;
+  color: $text-slate-400;
+  text-align: left;
+}
+
+// Preview Panel (Right)
+.previewCol {
+  @include respond-to('lg') {
+    grid-column: span 7 / span 7;
+  }
+}
+
+.previewCard {
+  background-color: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: $radius-2xl;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 600px;
+  box-shadow: $shadow-2xl;
+}
+
+.previewToolbar {
+  padding: 1.25rem 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  background-color: rgba(255, 255, 255, 0.01);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.statusIndicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pulseDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #3b82f6;
+  animation: pulse-soft 2s infinite;
+}
+
+.statusText {
+  font-size: 10px;
+  font-weight: 700;
+  color: $text-slate-400;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.toolbarActions {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.actionBtn {
+  height: 2.25rem; // h-9
+  padding: 0 1rem;
+  border-radius: $radius-sm;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: $transition-fast;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: $text-slate-300;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+
+  &:hover:not(:disabled) {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: $text-white;
+  }
+
+  &:disabled {
+    color: $text-slate-600;
+    border-color: transparent;
+    cursor: not-allowed;
+  }
+}
+
+.highlightActionBtn {
+  @extend .actionBtn;
+  background-color: $primary-blue;
+  color: $text-white;
+  border: none;
+  box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
+
+  &:hover:not(:disabled) {
+    background-color: $primary-blue-hover;
+  }
+
+  &:disabled {
+    background-color: #1e293b !important;
+    color: #475569 !important;
+    box-shadow: none;
+  }
+}
+
+.previewContent {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+// Processing Loader Overlay
+.loadingOverlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(11, 17, 32, 0.8);
+  backdrop-filter: blur(4px);
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+}
+
+.loaderSpinnerWrapper {
+  width: 6rem;
+  height: 6rem;
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.loaderPulseBg {
+  position: absolute;
+  inset: 0;
+  background-color: $primary-blue;
+  border-radius: $radius-pill;
+  filter: blur(24px);
+  animation: pulse-soft 2s infinite;
+  opacity: 0.2;
+}
+
+.loaderSpinner {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  color: $primary-blue;
+  animation: spin 1s linear infinite;
+}
+
+.loadingTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: $text-white;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.025em;
+}
+
+.loadingDesc {
+  color: $text-slate-400;
+  font-size: 0.875rem;
+  max-w: 20rem;
+}
+
+// Empty preview state
+.emptyPreviewState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  opacity: 0.2;
+}
+
+.dashedBox {
+  width: 5rem;
+  height: 5rem;
+  border-radius: $radius-xl;
+  border: 2px dashed $text-slate-600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $text-slate-500;
+}
+
+.emptyTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: $text-white;
+  letter-spacing: -0.025em;
+  text-transform: uppercase;
+}
+
+.emptyDesc {
+  color: $text-slate-500;
+  font-size: 0.875rem;
+  max-w: 240px;
+}
+
+// Results styles
+.resultWrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  overflow-y: auto;
+  max-h: 700px;
+  padding: 0.25rem;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 9999px;
+  }
+}
+
+.resultImageWrapper {
+  border-radius: $radius-xl;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: $shadow-2xl;
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  max-w: 36rem; // max-w-xl
+  margin: 0 auto;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.resultImage {
+  width: 100%;
+  height: 100%;
+  object-cover: cover;
+  transition: transform 0.7s ease;
+
+  .resultImageWrapper:hover & {
+    transform: scale(1.05);
+  }
+}
+
+.imageOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+  opacity: 0;
+  display: flex;
+  align-items: flex-end;
+  padding: 1.5rem;
+  transition: opacity 0.3s;
+
+  .resultImageWrapper:hover & {
+    opacity: 1;
+  }
+}
+
+.imageOverlayText {
+  color: $text-white;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.resultVideoWrapper {
+  border-radius: $radius-xl;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: $shadow-2xl;
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  max-w: 42rem;
+  margin: 0 auto;
+  background-color: #000;
+}
+
+.videoElement {
+  width: 100%;
+  height: 100%;
+}
+
+// Video rendering progress card
+.videoProgressCard {
+  width: 100%;
+  max-w: 36rem;
+  margin: 0 auto;
+  padding: 3rem;
+  border-radius: $radius-3xl;
+  background-color: rgba(59, 130, 246, 0.05);
+  border: 1px solid rgba(59, 130, 246, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.progressCardIcon {
+  width: 4rem;
+  height: 4rem;
+  border-radius: $radius-xl;
+  background-color: rgba(59, 130, 246, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $blue-400;
+}
+
+.progressCardHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  text-align: center;
+}
+
+.progressCardTitle {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: $text-white;
+  text-transform: uppercase;
+  letter-spacing: -0.025em;
+}
+
+.progressCardDesc {
+  font-size: 0.875rem;
+  color: $text-slate-400;
+  max-w: 320px;
+}
+
+.vaultBtn {
+  margin-top: 1rem;
+  padding: 0.5rem 1.5rem;
+  border-radius: $radius-lg;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: transparent;
+  color: $text-slate-300;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: $transition-fast;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: $text-white;
+  }
+}
+
+// Text response card
+.textResultCard {
+  width: 100%;
+  max-w: 36rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.cardContainer {
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: $radius-2xl;
+  overflow: hidden;
+  box-shadow: $shadow-2xl;
+  backdrop-filter: blur(12px);
+}
+
+.cardHeader {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  background-color: rgba(255, 255, 255, 0.02);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.headerTitleWrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.headerIcon {
+  color: $blue-400;
+}
+
+.headerLabel {
+  font-size: 10px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: $text-slate-400;
+}
+
+.dotsWrapper {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: $text-slate-600;
+}
+
+.cardBody {
+  padding: 2rem;
+  text-align: left;
+}
+
+.proseText {
+  color: $text-slate-200;
+  font-size: 1rem;
+  line-height: 1.625;
+  font-weight: 500;
+  white-space: pre-wrap;
+  user-select: text;
+  
+  &::selection {
+    background-color: rgba(37, 99, 235, 0.3);
+  }
+}
+
+.cardFooter {
+  padding: 1rem 2rem;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.wordCount {
+  font-size: 9px;
+  font-weight: 700;
+  color: $text-slate-500;
+  text-transform: uppercase;
+}
+
+.copyLink {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 9px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: $blue-400;
+  transition: color 0.15s;
+
+  &:hover {
+    color: $primary-blue;
+  }
+}

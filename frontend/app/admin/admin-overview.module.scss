@@ -1,0 +1,469 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.pageWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem; // space-y-12 equivalent
+  padding-bottom: 3rem;
+}
+
+.pageHeader {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding-bottom: 2.5rem;
+  gap: 1.5rem;
+
+  @include respond-to('md') {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.headerTitleWrapper {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.headerIconBox {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 1.5rem;
+  background-color: rgba(37, 99, 235, 0.1);
+  border: 1px solid rgba(37, 99, 235, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 20px 25px -5px rgba(59, 130, 246, 0.1);
+}
+
+.headerTitleText {
+  text-align: left;
+}
+
+.title {
+  font-size: 2.25rem; // text-4xl
+  font-weight: 900;
+  letter-spacing: -0.025em;
+  color: $text-white;
+}
+
+.subtitleRow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+.pulseDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #10b981; // emerald-500
+  animation: pulse-soft 2s infinite;
+}
+
+.subtitleText {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: $text-slate-400;
+}
+
+.headerActions {
+  display: flex;
+  gap: 1rem;
+}
+
+.actionBtn {
+  height: 3rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  background-color: $text-white;
+  color: #0f172a;
+  border-radius: $radius-xl;
+  font-weight: 900;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: $shadow-lg;
+  transition: $transition-fast;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+    transform: scale(1.05);
+  }
+}
+
+// Metrics Grid
+.metricsGrid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1.5rem;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.metricCard {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: $radius-2xl;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  transition: $transition-normal;
+  border-bottom: 2px solid transparent;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    border-bottom-color: rgba(37, 99, 235, 0.5);
+  }
+}
+
+.metricIconBox {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: $radius-xl;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  transition: transform 0.2s ease;
+
+  .metricCard:hover & {
+    transform: scale(1.1);
+  }
+}
+
+.blue-bg {
+  background-color: rgba(59, 130, 246, 0.05);
+  color: #60a5fa;
+}
+.orange-bg {
+  background-color: rgba(251, 146, 60, 0.05);
+  color: #fb923c;
+}
+.purple-bg {
+  background-color: rgba(168, 85, 247, 0.05);
+  color: #c084fc;
+}
+.emerald-bg {
+  background-color: rgba(52, 211, 153, 0.05);
+  color: #34d399;
+}
+
+.metricLabel {
+  font-size: 0.75rem;
+  font-weight: 900;
+  color: $text-slate-400;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  margin-bottom: 0.5rem;
+}
+
+.metricValue {
+  font-size: 1.875rem; // text-3xl
+  font-weight: 900;
+  color: $text-white;
+  letter-spacing: -0.025em;
+}
+
+.metricSub {
+  font-size: 10px;
+  font-weight: 700;
+  color: $text-slate-500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 0.5rem;
+}
+
+// Layout Grid
+.dashboardGrid {
+  display: grid;
+  gap: 2rem;
+  
+  @include respond-to('lg') {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+}
+
+.registryCol {
+  @include respond-to('lg') {
+    grid-column: span 8 / span 8;
+  }
+}
+
+.diagnosticsCol {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  @include respond-to('lg') {
+    grid-column: span 4 / span 4;
+  }
+}
+
+.card {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: $radius-3xl;
+  overflow: hidden;
+}
+
+.cardHeaderBlock {
+  padding: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: left;
+}
+
+.cardTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: $text-white;
+}
+
+.cardDesc {
+  font-size: 0.875rem;
+  color: $text-slate-500;
+  margin-top: 0.25rem;
+}
+
+.tableWrapper {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+}
+
+.tableHeadRow {
+  background-color: rgba(255, 255, 255, 0.02);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.tableHeader {
+  padding: 1rem 2rem;
+  font-size: 10px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: $text-slate-500;
+}
+
+.tableRow {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  transition: background-color 0.2s ease;
+  
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.02);
+  }
+}
+
+.userCell {
+  padding: 1.25rem 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.avatar {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 700;
+  color: $text-slate-400;
+}
+
+.userEmail {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: $text-slate-200;
+}
+
+.badgeCell {
+  padding: 1.25rem 2rem;
+}
+
+.timeCell {
+  padding: 1.25rem 2rem;
+  font-size: 0.75rem;
+  color: $text-slate-500;
+  font-weight: 500;
+}
+
+.actionCell {
+  padding: 1.25rem 2rem;
+  text-align: right;
+}
+
+.inspectBtn {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  border-radius: $radius-lg;
+  height: 2rem;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  color: $blue-400;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+
+  .tableRow:hover & {
+    opacity: 1;
+  }
+}
+
+// Diagnostics
+.diagnosticsCard {
+  @extend .card;
+  background: linear-gradient(135deg, #0f172a, #020617);
+  padding: 2rem;
+  text-align: left;
+}
+
+.diagTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: $text-white;
+  margin-bottom: 2rem;
+}
+
+.diagList {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.diagItem {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.diagIconBox {
+  width: 3rem;
+  height: 3rem;
+  border-radius: $radius-xl;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.diagBlue {
+  background-color: rgba(59, 130, 246, 0.1);
+  color: #3b82f6;
+  border-color: rgba(59, 130, 246, 0.2);
+}
+
+.diagEmerald {
+  background-color: rgba(16, 185, 129, 0.1);
+  color: #10b981;
+  border-color: rgba(16, 185, 129, 0.2);
+}
+
+.diagPurple {
+  background-color: rgba(168, 85, 247, 0.1);
+  color: #a855f7;
+  border-color: rgba(168, 85, 247, 0.2);
+}
+
+.diagProgWrapper {
+  flex: 1;
+}
+
+.diagHeaderRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.375rem;
+}
+
+.diagName {
+  font-size: 0.75rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: $text-slate-200;
+}
+
+.diagVal {
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.diagBar {
+  width: 100%;
+  height: 6px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.diagBarFill {
+  height: 100%;
+  border-radius: 9999px;
+}
+
+.bg-emerald {
+  background-color: #10b981;
+}
+.bg-blue {
+  background-color: #3b82f6;
+}
+.bg-purple {
+  background-color: #a855f7;
+}
+
+// Caching Box
+.cachingCard {
+  background-color: rgba(59, 130, 246, 0.05);
+  border: 1px dashed rgba(59, 130, 246, 0.2);
+  border-radius: $radius-2xl;
+  padding: 1.5rem;
+  text-align: left;
+}
+
+.cachingTitle {
+  font-size: 0.75rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: #60a5fa;
+  margin-bottom: 0.5rem;
+}
+
+.cachingDesc {
+  font-size: 0.75rem;
+  color: $text-slate-500;
+  line-height: 1.625;
+}

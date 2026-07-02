@@ -1,0 +1,403 @@
+@import '../styles/variables.scss';
+@import '../styles/mixins.scss';
+
+.landingWrapper {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  background-color: $bg-main;
+  color: $text-white;
+  position: relative;
+  overflow: hidden;
+}
+
+// Background blur decorative lights
+.backgroundEffects {
+  @include absolute-fill;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.orbTopLeft {
+  position: absolute;
+  top: -10%;
+  left: -10%;
+  width: 50%;
+  height: 50%;
+  background-color: rgba(37, 99, 235, 0.1); // blue-600/10
+  filter: blur(150px);
+  border-radius: $radius-pill;
+}
+
+.orbBottomRight {
+  position: absolute;
+  bottom: -10%;
+  right: -10%;
+  width: 50%;
+  height: 50%;
+  background-color: rgba(168, 85, 247, 0.1); // purple-600/10
+  filter: blur(150px);
+  border-radius: $radius-pill;
+}
+
+.orbMiddle {
+  position: absolute;
+  top: 20%;
+  right: 10%;
+  width: 30%;
+  height: 30%;
+  background-color: rgba(59, 130, 246, 0.05); // blue-500/5
+  filter: blur(120px);
+  border-radius: $radius-pill;
+}
+
+// Header
+.header {
+  position: relative;
+  z-index: 10;
+  padding: 1.5rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.brandIcon {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: $radius-md;
+  background: linear-gradient(135deg, $primary-blue, $purple-500);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: $shadow-glow-blue;
+}
+
+.brandName {
+  font-weight: 900;
+  font-size: 1.5rem;
+  letter-spacing: -0.05em;
+}
+
+.nav {
+  display: none;
+  
+  @include respond-to('md') {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: $text-slate-400;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+}
+
+.navLink {
+  text-decoration: none;
+  color: inherit;
+  transition: $transition-fast;
+
+  &:hover {
+    color: $text-white;
+  }
+}
+
+.headerActions {
+  display: flex;
+  gap: 1rem;
+}
+
+// Main
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 10;
+}
+
+.hero {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 6rem 1rem 8rem;
+  
+  @include respond-to('md') {
+    padding: 8rem 1rem 10rem;
+  }
+}
+
+.heroContainer {
+  max-w: 56rem; // max-w-4xl
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem; // space-y-10 equivalent
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.375rem 1rem;
+  border-radius: $radius-pill;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 10px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: $blue-400;
+  animation: pulse-soft 3s ease-in-out infinite;
+}
+
+.title {
+  font-size: 3.75rem; // text-6xl
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  line-height: 0.9;
+  
+  @include respond-to('sm') {
+    font-size: 4.5rem; // text-7xl
+  }
+  @include respond-to('lg') {
+    font-size: 5.625rem; // text-9xl
+  }
+}
+
+.indigoGradient {
+  @include text-gradient($blue-400, $purple-500);
+}
+
+.subtitle {
+  font-size: 1.125rem;
+  color: $text-slate-400;
+  max-w: 42rem; // max-w-2xl
+  margin: 0 auto;
+  font-weight: 500;
+  line-height: 1.625;
+  
+  @include respond-to('md') {
+    font-size: 1.5rem;
+  }
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  justify-content: center;
+  width: 100%;
+  
+  @include respond-to('sm') {
+    flex-direction: row;
+    width: auto;
+  }
+}
+
+// Hero Visual
+.visualWrapper {
+  margin-top: 6rem;
+  position: relative;
+  width: 100%;
+  max-w: 64rem;
+  padding: 0 1rem;
+  
+  &::before {
+    // border glow hover transition wrapper
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: calc(1rem - 4px);
+    right: calc(1rem - 4px);
+    bottom: -4px;
+    background: linear-gradient(to right, $primary-blue, $purple-600);
+    border-radius: calc($radius-3xl + 4px);
+    filter: blur(10px);
+    opacity: 0.2;
+    transition: opacity 1s ease;
+    z-index: 0;
+  }
+  
+  &:hover::before {
+    opacity: 0.4;
+  }
+}
+
+.visualContent {
+  position: relative;
+  z-index: 1;
+  aspect-ratio: 16 / 9;
+  border-radius: $radius-3xl;
+  background-color: $bg-main;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+  box-shadow: $shadow-2xl;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.visualOverlayLabels {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 2.5rem;
+  text-align: left;
+}
+
+.visualLabelPrimary {
+  font-size: 10px;
+  font-weight: 900;
+  color: $blue-400;
+  text-transform: uppercase;
+  letter-spacing: 0.125em;
+  margin-bottom: 0.25rem;
+}
+
+.visualLabelSecondary {
+  font-size: 12px;
+  font-weight: 700;
+  color: $text-slate-500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+// Features Grid
+.featuresSection {
+  display: grid;
+  gap: 2.5rem;
+  padding: 8rem 2rem;
+  max-w: 80rem;
+  margin: 0 auto;
+  width: 100%;
+  
+  @include respond-to('md') {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.featureCard {
+  position: relative;
+  padding: 2.5rem;
+  border-radius: $radius-3xl;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  background-color: rgba(255, 255, 255, 0.02);
+  transition: $transition-normal;
+  overflow: hidden;
+  text-align: left;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+.cardGlowEffect {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 8rem;
+  height: 8rem;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+  filter: blur(24px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  
+  .featureCard:hover & {
+    opacity: 1;
+  }
+}
+
+.iconWrapper {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: $radius-lg;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+// Icon wrapper specific bg/text colors
+.bg-blue {
+  background-color: rgba(59, 130, 246, 0.05);
+  color: $blue-400;
+}
+.bg-purple {
+  background-color: rgba(168, 85, 247, 0.05);
+  color: $purple-400;
+}
+.bg-emerald {
+  background-color: rgba(16, 185, 129, 0.05);
+  color: $emerald-400;
+}
+
+.cardTitle {
+  font-size: 1.5rem;
+  font-weight: 900;
+  letter-spacing: -0.025em;
+  margin-bottom: 1rem;
+}
+
+.cardDesc {
+  color: $text-slate-400;
+  line-height: 1.625;
+  font-weight: 500;
+}
+
+// Footer
+.footer {
+  position: relative;
+  z-index: 10;
+  padding: 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  background-color: rgba(0, 0, 0, 0.2);
+  font-size: 10px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.4em;
+  color: $text-slate-500;
+  gap: 1.5rem;
+  
+  @include respond-to('md') {
+    flex-direction: row;
+    gap: 0;
+  }
+}
+
+.footerLinks {
+  display: flex;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.footerLink {
+  text-decoration: none;
+  color: inherit;
+  transition: $transition-fast;
+
+  &:hover {
+    color: $blue-400;
+  }
+}

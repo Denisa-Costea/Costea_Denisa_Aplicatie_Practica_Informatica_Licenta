@@ -1,0 +1,539 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.pageWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem; // space-y-10 equivalent
+}
+
+// Hero section banner
+.heroBanner {
+  position: relative;
+  padding: 2.5rem;
+  border-radius: $radius-2xl;
+  background-color: rgba(30, 41, 59, 0.2); // bg-[#1e293b]/20
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+}
+
+.gradientOverlay {
+  @include absolute-fill;
+  background: linear-gradient(to right, rgba(37, 99, 235, 0.05), rgba(99, 102, 241, 0.05));
+  opacity: 0.5;
+  transition: opacity 0.7s ease;
+
+  .heroBanner:hover & {
+    opacity: 1;
+  }
+}
+
+.heroContent {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2.5rem;
+
+  @include respond-to('md') {
+    flex-direction: row;
+  }
+}
+
+.heroText {
+  max-w: 36rem; // max-w-xl
+  text-align: left;
+}
+
+.systemBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 0.75rem;
+  border-radius: $radius-pill;
+  background-color: rgba(59, 130, 246, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  color: $blue-400;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 1.5rem;
+}
+
+.title {
+  font-size: 3rem; // text-5xl
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.25;
+  margin-bottom: 1.5rem;
+  color: $text-white;
+}
+
+.titleGradient {
+  @include text-gradient($blue-400, $indigo-400);
+}
+
+.subtitle {
+  color: $text-slate-400;
+  font-size: 1.125rem; // text-lg
+  font-weight: 500;
+  margin-bottom: 2rem;
+  line-height: 1.625;
+}
+
+.buttonGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.primaryBtn {
+  height: 3rem;
+  padding: 0 2rem;
+  border-radius: $radius-xl;
+  background-color: $primary-blue;
+  color: $text-white;
+  font-weight: 700;
+  font-size: 0.75rem;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: $transition-fast;
+
+  &:hover {
+    background-color: $primary-blue-hover;
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.secondaryBtn {
+  height: 3rem;
+  padding: 0 1.5rem;
+  border-radius: $radius-xl;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: $text-slate-300;
+  font-weight: 700;
+  font-size: 0.75rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: $transition-fast;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: $text-white;
+  }
+}
+
+// Floating visual orb card
+.visualContainer {
+  display: none;
+  
+  @include respond-to('lg') {
+    display: block;
+  }
+}
+
+.floatingCardWrapper {
+  width: 12rem;
+  height: 12rem;
+  position: relative;
+}
+
+.floatGlow {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(59, 130, 246, 0.1);
+  filter: blur(80px);
+  animation: pulse-soft 3s ease-in-out infinite;
+}
+
+.floatingCard {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  border-radius: $radius-2xl;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: $shadow-2xl;
+  animation: float 6s ease-in-out infinite;
+  color: $primary-blue;
+}
+
+// Statistics Grid
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1.5rem;
+  
+  @include respond-to('md') {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  @include respond-to('lg') {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.statsCard {
+  padding: 1.5rem;
+  border-radius: $radius-xl;
+  background-color: rgba(15, 23, 42, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: $transition-normal;
+  text-align: left;
+
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+.statsIconWrapper {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: $radius-md;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.statsLabel {
+  font-size: 10px;
+  font-weight: 700;
+  color: $text-slate-500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.25rem;
+}
+
+.statsValue {
+  font-size: 1.875rem; // text-3xl
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  margin-bottom: 0.25rem;
+  color: $text-white;
+}
+
+.statsSub {
+  font-size: 10px;
+  font-weight: 500;
+  color: $text-slate-500;
+  text-transform: uppercase;
+}
+
+// Colors for stats icon
+.stats-blue {
+  background-color: rgba(59, 130, 246, 0.1);
+  color: $blue-400;
+}
+.stats-purple {
+  background-color: rgba(168, 85, 247, 0.1);
+  color: $purple-400;
+}
+.stats-emerald {
+  background-color: rgba(16, 185, 129, 0.1);
+  color: $emerald-400;
+}
+.stats-orange {
+  background-color: rgba(249, 115, 22, 0.1);
+  color: $orange-500;
+}
+
+// Bottom grid (Main Content Grid)
+.mainGrid {
+  display: grid;
+  gap: 2rem;
+  
+  @include respond-to('lg') {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+// Recent Activity Section
+.activityColumn {
+  padding: 2rem;
+  border-radius: $radius-2xl;
+  background-color: rgba(15, 23, 42, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  
+  @include respond-to('lg') {
+    grid-column: span 2 / span 2;
+  }
+}
+
+.activityHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.activityTitleWrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.activityTitleIcon {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: $radius-md;
+  background-color: rgba(59, 130, 246, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $blue-400;
+}
+
+.activityTitle {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: $text-white;
+}
+
+.viewAllLink {
+  font-size: 10px;
+  font-weight: 700;
+  color: $primary-blue;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  transition: $transition-fast;
+
+  &:hover {
+    color: $blue-400;
+  }
+}
+
+.activityList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.activityItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  border-radius: $radius-lg;
+  background-color: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: $transition-normal;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+.itemInfoWrapper {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  text-align: left;
+}
+
+.itemIcon {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: $radius-md;
+  background-color: rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $text-slate-500;
+  transition: $transition-fast;
+  
+  .activityItem:hover & {
+    color: $blue-400;
+  }
+}
+
+.itemDetail {
+  overflow: hidden;
+}
+
+.itemPrompt {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: $text-slate-200;
+  margin-bottom: 0.125rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-w: 12.5rem; // sm:max-w-[300px] etc
+  
+  @media (min-width: 640px) {
+    max-w: 18.75rem;
+  }
+}
+
+.itemMeta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.itemType {
+  font-size: 9px;
+  font-weight: 700;
+  color: $primary-blue;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.metaDivider {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: $text-slate-600;
+}
+
+.itemDate {
+  font-size: 9px;
+  font-weight: 500;
+  color: $text-slate-500;
+  text-transform: uppercase;
+}
+
+.arrowButton {
+  width: 2rem;
+  height: 2rem;
+  border-radius: $radius-pill;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: none;
+  cursor: pointer;
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $text-white;
+  transition: $transition-normal;
+  
+  .activityItem:hover & {
+    opacity: 1;
+  }
+
+  &:hover {
+    background-color: $primary-blue;
+    color: $text-white;
+  }
+}
+
+.emptyState {
+  padding: 4rem 0;
+  text-align: center;
+  color: $text-slate-500;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+// Magic Tips Card Section
+.tipsColumn {
+  padding: 2rem;
+  border-radius: $radius-2xl;
+  background: linear-gradient(to bottom right, rgba(37, 99, 235, 0.1), rgba(99, 102, 241, 0.1));
+  border: 1px solid rgba(59, 130, 246, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.tipsHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.tipsHeaderIcon {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: $radius-md;
+  background-color: rgba(59, 130, 246, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $blue-400;
+}
+
+.tipsTitle {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: $text-white;
+}
+
+.tipsList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  flex: 1;
+  text-align: left;
+}
+
+.tipItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.tipLabel {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: $blue-400;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.tipLabelIndigo {
+  @extend .tipLabel;
+  color: $indigo-400;
+}
+
+.tipDesc {
+  font-size: 0.875rem;
+  color: $text-slate-400;
+  font-weight: 500;
+  line-height: 1.625;
+}
+
+.upgradeBtn {
+  margin-top: 2.5rem;
+  width: 100%;
+  height: 3rem;
+  border-radius: $radius-lg;
+  background-color: $text-white;
+  color: $bg-main;
+  font-weight: 700;
+  font-size: 0.75rem;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+  transition: $transition-fast;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+  }
+}

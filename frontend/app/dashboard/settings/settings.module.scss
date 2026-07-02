@@ -1,0 +1,391 @@
+@import '../../../styles/variables.scss';
+@import '../../../styles/mixins.scss';
+
+.pageWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem; // space-y-10 equivalent
+  max-w: 72rem; // max-w-6xl
+  margin: 0 auto;
+}
+
+.titleSection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  text-align: left;
+}
+
+.title {
+  font-size: 3rem; // text-5xl
+  font-weight: 900;
+  letter-spacing: -0.025em;
+  color: $text-white;
+  text-transform: uppercase;
+  font-style: italic;
+}
+
+.subtitle {
+  color: $text-slate-400;
+  font-weight: 500;
+}
+
+.layoutGrid {
+  display: grid;
+  gap: 2rem;
+  
+  @include respond-to('lg') {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+}
+
+.formCol {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  
+  @include respond-to('lg') {
+    grid-column: span 8 / span 8;
+  }
+}
+
+.card {
+  @include glass-card;
+  border-radius: $radius-3xl;
+  padding: 2.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.bgIcon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 2rem;
+  opacity: 0.05;
+  color: $text-white;
+}
+
+.cardHeaderBlock {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.iconBoxBlue {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: $radius-md;
+  background-color: rgba(37, 99, 235, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $primary-blue;
+}
+
+.iconBoxPurple {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: $radius-md;
+  background-color: rgba(168, 85, 247, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $purple-400;
+}
+
+.iconBoxEmerald {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: $radius-md;
+  background-color: rgba(16, 185, 129, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $emerald-400;
+}
+
+.cardTitle {
+  font-size: 1.25rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.025em;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem; // space-y-6 equivalent
+  position: relative;
+  z-index: 10;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  text-align: left;
+}
+
+.label {
+  font-size: 10px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: $text-slate-500;
+  padding-left: 0.25rem;
+}
+
+.input {
+  width: 100%;
+  height: 3.5rem; // h-14
+  background-color: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: $radius-xl;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  font-size: 0.875rem;
+  color: $text-white;
+  outline: none;
+  transition: $transition-fast;
+
+  &:focus {
+    border-color: rgba(37, 99, 235, 0.5);
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+  }
+}
+
+.inputPurple {
+  @extend .input;
+  &:focus {
+    border-color: rgba(168, 85, 247, 0.5);
+    box-shadow: 0 0 0 2px rgba(168, 85, 247, 0.2);
+  }
+}
+
+.detailsGrid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1rem;
+  
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.detailCard {
+  padding: 1rem;
+  border-radius: $radius-xl;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  text-align: left;
+}
+
+.detailLabel {
+  font-size: 9px;
+  font-weight: 900;
+  color: $text-slate-500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.25rem;
+}
+
+.detailValue {
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.detailValueBlue {
+  @extend .detailValue;
+  color: $primary-blue;
+  font-weight: 900;
+}
+
+.submitBtnBlue {
+  height: 3.5rem;
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+  border-radius: $radius-xl;
+  background-color: $primary-blue;
+  color: $text-white;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-size: 0.75rem;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.2);
+  align-self: flex-start;
+}
+
+.submitBtnPurple {
+  @extend .submitBtnBlue;
+  background-color: $purple-600;
+  box-shadow: 0 10px 15px -3px rgba(168, 85, 247, 0.2);
+}
+
+.inputGroupRow {
+  display: grid;
+  gap: 1.5rem;
+  
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+// Side Column (Right)
+.sidebarCol {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  
+  @include respond-to('lg') {
+    grid-column: span 4 / span 4;
+  }
+}
+
+.integrationRow {
+  padding: 1rem;
+  border-radius: $radius-xl;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: $transition-fast;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+.integrationInfo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.integrationIconWrapper {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: $radius-md;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $text-white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.fb-bg {
+  background-color: #2563eb;
+}
+.ig-bg {
+  background: linear-gradient(to top right, #eab308, #ec4899, #9333ea);
+}
+.li-bg {
+  background-color: #1d4ed8;
+}
+
+.integrationLabelWrapper {
+  text-align: left;
+}
+
+.integrationName {
+  font-size: 0.75rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: $text-white;
+}
+
+.integrationSub {
+  font-size: 9px;
+  font-weight: 700;
+  color: $text-slate-500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.unlinkBtn {
+  padding: 0.5rem 1rem;
+  border-radius: $radius-lg;
+  font-size: 9px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border: none;
+  background-color: rgba(239, 68, 68, 0.1);
+  color: #f87171;
+  cursor: pointer;
+  transition: $transition-fast;
+
+  &:hover {
+    background-color: #ef4444;
+    color: $text-white;
+  }
+}
+
+.linkBtn {
+  @extend .unlinkBtn;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: $text-slate-400;
+
+  &:hover {
+    background-color: $text-white;
+    color: $bg-main;
+  }
+}
+
+// Upgrade promo card
+.upgradeCard {
+  padding: 2rem;
+  border-radius: $radius-2xl;
+  background: linear-gradient(to bottom right, rgba(37, 99, 235, 0.1), rgba(168, 85, 247, 0.1));
+  border: 1px solid rgba(59, 130, 246, 0.1);
+  text-align: left;
+}
+
+.upgradeIcon {
+  color: $primary-blue;
+  margin-bottom: 1rem;
+}
+
+.upgradeTitle {
+  font-size: 0.875rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+}
+
+.upgradeDesc {
+  font-size: 0.75rem;
+  color: $text-slate-500;
+  font-weight: 500;
+  line-height: 1.625;
+  margin-bottom: 1.5rem;
+}
+
+.upgradeBtn {
+  width: 100%;
+  height: 3rem;
+  border-radius: $radius-xl;
+  background-color: $text-white;
+  color: $bg-main;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-size: 10px;
+  border: none;
+  cursor: pointer;
+  transition: $transition-fast;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}

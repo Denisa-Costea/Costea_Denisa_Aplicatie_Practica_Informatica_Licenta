@@ -1,0 +1,382 @@
+@import '../../../styles/variables.scss';
+@import '../../../styles/mixins.scss';
+
+.pageWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem; // space-y-10 equivalent
+}
+
+// Page header
+.pageHeader {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding-bottom: 2rem;
+  gap: 1.5rem;
+
+  @include respond-to('md') {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+}
+
+.headerText {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  text-align: left;
+}
+
+.title {
+  font-size: 2.25rem; // text-4xl
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: $text-white;
+}
+
+.subtitle {
+  color: $text-slate-400;
+  font-size: 0.875rem;
+}
+
+// Filters row
+.filterBar {
+  display: flex;
+  padding: 0.25rem;
+  background-color: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: $radius-xl;
+  align-self: flex-start;
+}
+
+.filterBtn {
+  padding: 0.5rem 1.25rem;
+  border-radius: $radius-lg;
+  font-size: 10px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  border: none;
+  background: transparent;
+  color: $text-slate-500;
+  cursor: pointer;
+  transition: $transition-fast;
+
+  &:hover {
+    color: $text-slate-300;
+  }
+}
+
+.filterBtnActive {
+  background-color: $primary-blue;
+  color: $text-white;
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.2);
+
+  &:hover {
+    color: $text-white;
+  }
+}
+
+// Empty state
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 5rem 2rem;
+  border-radius: $radius-2xl;
+  background-color: rgba(15, 23, 42, 0.2);
+  border: 2px dashed rgba(255, 255, 255, 0.05);
+  text-align: center;
+}
+
+.emptyIconWrapper {
+  width: 4rem;
+  height: 4rem;
+  border-radius: $radius-xl;
+  background-color: rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.emptyTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: $text-white;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: -0.025em;
+}
+
+.emptyDesc {
+  color: $text-slate-500;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+// Grid layout
+.gridContainer {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1.5rem;
+
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  @include respond-to('lg') {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  @media (min-width: 1280px) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+// History item card
+.card {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(15, 23, 42, 0.4);
+  border-radius: $radius-xl;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: $shadow-lg;
+  transition: $transition-normal;
+
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+  }
+}
+
+.cardThumbnailWrapper {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  background-color: rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+}
+
+.thumbnailImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s ease;
+  
+  .card:hover & {
+    transform: scale(1.1);
+  }
+}
+
+.thumbnailTextOverlay {
+  position: absolute;
+  inset-x: 0;
+  bottom: 0;
+  padding: 1rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 60%, transparent 100%);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+.overlayText {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.625;
+  font-style: italic;
+  font-weight: 500;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-align: left;
+}
+
+.thumbnailTextOnly {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(99, 102, 241, 0.1));
+  position: relative;
+  overflow: hidden;
+  transition: background-color 0.2s ease;
+
+  .card:hover & {
+    background-color: rgba(37, 99, 235, 0.2);
+  }
+}
+
+.backgroundIcon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 1rem;
+  opacity: 0.05;
+  pointer-events: none;
+}
+
+.creationQuote {
+  position: relative;
+  z-index: 10;
+  font-size: 11px;
+  font-weight: 700;
+  color: $text-slate-300;
+  line-height: 1.625;
+  display: -webkit-box;
+  -webkit-line-clamp: 8;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-align: center;
+  font-style: italic;
+}
+
+// Badges
+.platformBadge {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  height: 1.75rem;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  border-radius: $radius-md;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.badgeText {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: $text-white;
+}
+
+// Hover controls overlay
+.hoverOverlay {
+  @include absolute-fill;
+  background-color: rgba(11, 17, 32, 0.6);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+
+  .cardThumbnailWrapper:hover & {
+    opacity: 1;
+  }
+}
+
+.viewDetailBtn {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background-color: $text-white;
+  color: $bg-main;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+// Card Info
+.cardFooter {
+  padding: 1.25rem;
+  text-align: left;
+}
+
+.promptText {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: $text-slate-200;
+  margin-bottom: 0.75rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 1.625;
+}
+
+.metaRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dateText {
+  font-size: 10px;
+  font-weight: 500;
+  color: $text-slate-500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.actionsGroup {
+  display: flex;
+  gap: 0.375rem;
+}
+
+.actionIconBtn {
+  padding: 0.5rem;
+  border-radius: $radius-md;
+  border: none;
+  background: transparent;
+  color: $text-slate-500;
+  cursor: pointer;
+  transition: $transition-fast;
+
+  &:hover {
+    color: $text-white;
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+}
+
+.analyzeBtn {
+  @extend .actionIconBtn;
+  
+  &:hover:not(:disabled) {
+    color: $blue-400;
+    background-color: rgba(59, 130, 246, 0.1);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+.analyzedActive {
+  color: $emerald-400;
+  background-color: rgba(16, 185, 129, 0.1);
+
+  &:hover {
+    color: $emerald-400;
+    background-color: rgba(16, 185, 129, 0.15);
+  }
+}
+
+.deleteBtn {
+  @extend .actionIconBtn;
+
+  &:hover {
+    color: #f87171;
+    background-color: rgba(239, 68, 68, 0.1);
+  }
+}

@@ -1,0 +1,193 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.layoutWrapper {
+  min-height: 100vh;
+  background-color: #030712;
+  color: $text-white;
+  display: flex;
+  padding: 1rem;
+  gap: 1rem;
+  overflow: hidden;
+}
+
+.ambientLight {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.glow {
+  position: absolute;
+  top: -10%;
+  right: -10%;
+  width: 40%;
+  height: 40%;
+  background-color: rgba(220, 38, 38, 0.1); // red-600
+  filter: blur(120px);
+  border-radius: 50%;
+}
+
+// Sidebar
+.sidebar {
+  width: 18rem; // w-72
+  @include glass-card;
+  border-radius: $radius-3xl;
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: column;
+  padding: 2rem;
+  position: relative;
+  z-index: 20;
+  border-color: rgba(239, 68, 68, 0.1); // red-500/10
+  box-shadow: $shadow-2xl;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 3rem;
+}
+
+.brandIconBox {
+  width: 3rem;
+  height: 3rem;
+  border-radius: $radius-xl;
+  background: linear-gradient(135deg, #dc2626, #ea580c);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 15px -3px rgba(220, 38, 38, 0.2);
+}
+
+.brandTextWrapper {
+  text-align: left;
+}
+
+.brandTitle {
+  font-size: 1.5rem;
+  font-weight: 900;
+  letter-spacing: -0.025em;
+  font-style: italic;
+  background: linear-gradient(to right, #f87171, #f97316);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.brandSubtitle {
+  font-size: 10px;
+  font-weight: 900;
+  color: #ef4444;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+
+// Nav
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.navLink {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  border-radius: $radius-xl;
+  font-size: 0.75rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: $text-slate-500;
+  text-decoration: none;
+  transition: $transition-normal;
+
+  &:hover {
+    color: $text-white;
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+}
+
+.navLinkActive {
+  background-color: rgba(220, 38, 38, 0.1);
+  color: $text-white;
+  box-shadow: $shadow-lg;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+
+  &:hover {
+    background-color: rgba(220, 38, 38, 0.15);
+  }
+}
+
+.iconActive {
+  color: #ef4444;
+}
+
+.dividerBlock {
+  padding-top: 2rem;
+  margin-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.backLink {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  border-radius: $radius-xl;
+  font-size: 0.75rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: $text-slate-500;
+  text-decoration: none;
+  transition: $transition-fast;
+
+  &:hover {
+    color: $blue-400;
+    background-color: rgba(59, 130, 246, 0.05);
+  }
+}
+
+.logoutBtn {
+  width: 100%;
+  justify-content: flex-start;
+  color: $text-slate-500;
+  border-radius: $radius-xl;
+  height: 3.5rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: color 0.2s ease, background-color 0.2s ease;
+
+  &:hover {
+    color: #f87171;
+    background-color: rgba(239, 68, 68, 0.1);
+  }
+}
+
+// Main Content
+.mainContent {
+  flex: 1;
+  @include glass-card;
+  border-radius: $radius-3xl;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: $shadow-2xl;
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+.scrollArea {
+  flex: 1;
+  overflow-y: auto;
+  padding: 3rem;
+  position: relative;
+  z-index: 10;
+}

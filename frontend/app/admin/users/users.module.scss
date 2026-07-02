@@ -1,0 +1,142 @@
+@import '../../../styles/variables.scss';
+@import '../../../styles/mixins.scss';
+
+.pageWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem; // space-y-6 equivalent
+}
+
+.pageHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  text-align: left;
+  
+  @include respond-to('md') {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.headerText {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.title {
+  font-size: 1.875rem; // text-3xl
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: $text-white;
+}
+
+.subtitle {
+  color: $text-slate-400;
+  font-size: 0.875rem;
+}
+
+.headerStats {
+  display: flex;
+  gap: 1rem;
+}
+
+.statCard {
+  background-color: #0f172a; // slate-900
+  border: 1px solid #1e293b; // slate-800
+  color: #f1f5f9; // slate-100
+  border-radius: $radius-xl;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-align: left;
+}
+
+.blueIconBox {
+  background-color: rgba(59, 130, 246, 0.2);
+  padding: 0.75rem;
+  border-radius: 50%;
+  color: #3b82f6;
+}
+
+.greenIconBox {
+  background-color: rgba(34, 197, 94, 0.2);
+  padding: 0.75rem;
+  border-radius: 50%;
+  color: #22c55e;
+}
+
+.statLabel {
+  font-size: 0.875rem;
+  color: $text-slate-400;
+}
+
+.statValue {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.card {
+  background-color: #0f172a; // slate-900
+  border: 1px solid #1e293b; // slate-800
+  color: #f1f5f9; // slate-100
+  border-radius: $radius-2xl;
+  overflow: hidden;
+  box-shadow: $shadow-lg;
+}
+
+.cardHeaderBlock {
+  padding: 1.5rem;
+  border-bottom: 1px solid #1e293b;
+  text-align: left;
+}
+
+.tableHeaderRow {
+  background-color: rgba(2, 6, 23, 0.5); // slate-950/50
+}
+
+.tableHeadRow {
+  border-bottom: 1px solid #1e293b;
+  
+  &:hover {
+    background-color: rgba(15, 23, 42, 0.5);
+  }
+}
+
+.tableHeadText {
+  color: $text-slate-400;
+  font-weight: 500;
+}
+
+.tableRow {
+  border-bottom: 1px solid #1e293b;
+  transition: background-color 0.2s ease;
+  
+  &:hover {
+    background-color: rgba(30, 41, 59, 0.5);
+  }
+}
+
+.idCell {
+  color: $text-slate-500;
+  font-family: monospace;
+  font-size: 0.75rem;
+}
+
+.userEmail {
+  font-weight: 500;
+  color: $text-slate-200;
+}
+
+.actionsCell {
+  text-align: right;
+}
+
+.actionRow {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
